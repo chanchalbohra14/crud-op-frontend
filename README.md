@@ -51,13 +51,13 @@ Replace the URL with your deployed backend URL when ready for production.
 `git clone https://github.com/your-username/crup-op-frontend.git`  
 `cd crup-op-frontend`
 
-2. Start the backend server:  
+3. Start the backend server:  
 `cd backend`  
 `npm install`  
-`npm start`  
+`npm run server`  
 Backend runs at `http://localhost:8000`
 
-3. Start the frontend app:  
+4. Start the frontend app:  
 `cd frontend`  
 `npm install`  
 `npm run dev`  
@@ -68,10 +68,7 @@ Frontend runs at `http://localhost:5173`
 ## Deployment Recommendations
 
 - Frontend can be deployed on Netlify or Vercel  
-- Backend can be deployed on Render, Railway, or Cyclic  
-
-
-
+- Backend can be deployed on Render 
 
 
 -
