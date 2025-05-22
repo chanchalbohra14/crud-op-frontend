@@ -1,4 +1,4 @@
-# crup-op-frontend
+# crud-op-frontend
 
 A full-stack CRUD application built with React (frontend) and Node.js/Express (backend).  
 This app enables users to create, view, update, and delete member records with form validation.
