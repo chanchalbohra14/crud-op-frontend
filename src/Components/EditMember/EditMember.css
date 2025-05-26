@@ -1,0 +1,143 @@
+/* Ultra-Compact Form with Slightly Increased Width */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+}
+
+.member-form {
+  background-color: #ffffff;
+  padding: 32px 24px; /* ⬅️ Increased vertical padding */
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  max-width: 520px;
+  width: 100%;
+}
+
+.member-form h2 {
+  text-align: center;
+  margin-bottom: 14px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Labels */
+.form-label {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 500;
+  color: #333;
+  font-size: 13px;
+}
+
+/* Inputs, Selects, Textarea */
+.form-input,
+select,
+.form-textarea {
+  width: 100%;
+  padding: 5px 9px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: 6px;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+select:focus,
+.form-textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Gender radio group */
+input[type="radio"] {
+  margin-right: 4px;
+  transform: scale(0.95);
+  cursor: pointer;
+}
+
+.member-form label[for="female"],
+.member-form label[for="male"],
+.member-form label[for="others"] {
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+/* Error text */
+.error {
+  color: #d32f2f;
+  font-size: 11px;
+  margin-top: -4px;
+  margin-bottom: 6px;
+}
+
+/* Textarea */
+.form-textarea {
+  resize: vertical;
+  min-height: 45px;
+}
+
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  padding: 7px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.gender-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.gender-group .form-label {
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+.gender-group label {
+  font-size: 13px;
+}
+.delbutton {
+  width: 100%;
+  padding: 7px;
+  margin-top: 12px;
+  background-color: #dc3545; /* Bootstrap's danger red */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delbutton:hover {
+  background-color: #a71d2a; /* Darker red on hover */
+}
