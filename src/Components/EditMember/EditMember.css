@@ -90,23 +90,36 @@ input[type="radio"] {
   min-height: 45px;
 }
 
-/* Submit button */
-.submit-btn {
+.submit-btn,
+.delbutton {
   width: 100%;
   padding: 7px;
-  background-color: #007bff;
-  color: white;
-  border: none;
   border-radius: 5px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border: none;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: white;
   margin-top: 10px;
 }
 
 .submit-btn:hover {
   background-color: #0056b3;
+}
+
+.delbutton {
+  background-color: #dc3545;
+  color: white;
+  margin-top: 12px;
+}
+
+.delbutton:hover {
+  background-color: #a71d2a;
 }
 
 .gender-group {
@@ -123,21 +136,4 @@ input[type="radio"] {
 
 .gender-group label {
   font-size: 13px;
-}
-.delbutton {
-  width: 100%;
-  padding: 7px;
-  margin-top: 12px;
-  background-color: #dc3545; /* Bootstrap's danger red */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.delbutton:hover {
-  background-color: #a71d2a; /* Darker red on hover */
 }
