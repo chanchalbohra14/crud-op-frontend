@@ -1,4 +1,10 @@
-/* Ultra-Compact Form with Slightly Increased Width */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* or your container height */
+  width: 100%;
+}
 
 body {
   margin: 0;
@@ -7,24 +13,25 @@ body {
   background-color: #f4f6f8;
 }
 
-.form-wrapper {
+/* Container for the entire form */
+.edit-form-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 10px;
-  min-height: 100vh;
-  background-color: #f4f6f8;
+  padding: 20px;
 }
 
+/* Form card */
 .member-form {
   background-color: #ffffff;
-  padding: 32px 24px; /* ⬅️ Increased vertical padding */
+  padding: 10px 24px;
   border-radius: 8px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
   max-width: 520px;
   width: 100%;
 }
 
+/* Form heading */
 .member-form h2 {
   text-align: center;
   margin-bottom: 14px;
@@ -33,7 +40,7 @@ body {
   font-weight: 600;
 }
 
-/* Labels */
+/* Form labels */
 .form-label {
   display: block;
   margin-bottom: 2px;
@@ -42,7 +49,7 @@ body {
   font-size: 13px;
 }
 
-/* Inputs, Selects, Textarea */
+/* Inputs, selects, and textarea */
 .form-input,
 select,
 .form-textarea {
@@ -55,6 +62,7 @@ select,
   box-sizing: border-box;
 }
 
+/* Focus state */
 .form-input:focus,
 select:focus,
 .form-textarea:focus {
@@ -62,26 +70,23 @@ select:focus,
   outline: none;
 }
 
-/* Gender radio group */
+/* Gender radio buttons */
 input[type="radio"] {
   margin-right: 4px;
   transform: scale(0.95);
   cursor: pointer;
 }
 
-.member-form label[for="female"],
-.member-form label[for="male"],
-.member-form label[for="others"] {
-  font-size: 12px;
-  margin-right: 10px;
+/* Gender radio group */
+.gender-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
-/* Error text */
-.error {
-  color: #d32f2f;
-  font-size: 11px;
-  margin-top: -4px;
-  margin-bottom: 6px;
+.gender-group label {
+  font-size: 13px;
 }
 
 /* Textarea */
@@ -90,50 +95,48 @@ input[type="radio"] {
   min-height: 45px;
 }
 
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%; /* Make sure container can expand */
+  max-width: 520px; /* Optional, matches your form width */
+  align-items: center; /* vertically center buttons */
+}
+
 .submit-btn,
-.delbutton {
-  width: 100%;
+.delbutton-inside {
+  flex: 1; /* Equal width */
+  min-width: 0; /* Allow shrinking */
+  height: 36px; /* Fixed height */
   padding: 7px;
-  border-radius: 5px;
   font-size: 13px;
   font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: white;
   border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex; /* Use flex to center text */
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  margin: 0; /* Remove default margins */
+  user-select: none; /* Optional - prevent text selection */
 }
 
 .submit-btn {
   background-color: #007bff;
-  color: white;
-  margin-top: 10px;
 }
 
 .submit-btn:hover {
   background-color: #0056b3;
 }
 
-.delbutton {
+.delbutton-inside {
   background-color: #dc3545;
-  color: white;
-  margin-top: 12px;
 }
 
-.delbutton:hover {
+.delbutton-inside:hover {
   background-color: #a71d2a;
-}
-
-.gender-group {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-
-.gender-group .form-label {
-  margin-bottom: 0;
-  margin-right: 10px;
-}
-
-.gender-group label {
-  font-size: 13px;
 }

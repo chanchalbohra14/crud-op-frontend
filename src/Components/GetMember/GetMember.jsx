@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./GetMember.css";
+import { BeatLoader } from "react-spinners";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
@@ -24,7 +25,12 @@ const GetMember = () => {
     fetchMember();
   }, []);
 
-  if (loading) return <p>loading...</p>;
+  if (loading)
+    return (
+      <div className="loader">
+        <BeatLoader />
+      </div>
+    );
 
   return (
     <div className="card-container">

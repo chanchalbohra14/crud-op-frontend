@@ -4,6 +4,7 @@ const url = import.meta.env.VITE_BACKEND_URL;
 import "./GetMembers.css";
 import { FaEye, FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 const GetMembers = () => {
   const navigate = useNavigate();
   const [members, setMembers] = useState([]);
@@ -30,7 +31,12 @@ const GetMembers = () => {
     navigate(`/editmember/${id}`);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="loader">
+        <BeatLoader />
+      </div>
+    );
 
   return (
     <div className="page">

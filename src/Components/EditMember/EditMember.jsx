@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import "./EditMember.css"; // make sure the path is correct
+import { BeatLoader } from "react-spinners";
+
 const url = import.meta.env.VITE_BACKEND_URL;
-import "./EditMember.css";
+
 const EditMember = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -28,10 +30,11 @@ const EditMember = () => {
 
     getMember();
   }, [id, reset]);
+
   const onSubmit = async (data) => {
-    const issame = JSON.stringify(data) === JSON.stringify(member);
-    if (issame) {
-      alert("no changes made");
+    const isSame = JSON.stringify(data) === JSON.stringify(member);
+    if (isSame) {
+      alert("No changes made");
       return;
     }
     try {
@@ -39,135 +42,123 @@ const EditMember = () => {
         `${url}/member/updatemember/${id}`,
         data
       );
-      console.log(update.data);
       if (update.status === 200) {
-        alert("upadate member successfully");
+        alert("Member updated successfully");
       }
     } catch (error) {
       console.log(error.message);
     }
   };
+
   const deleteMember = async () => {
     try {
-      console.log(id);
       const del = await axios.delete(`${url}/member/deletemember/${id}`);
-
       if (del.status === 200) {
-        alert("member deleted successfully");
+        alert("Member deleted successfully");
         navigate("/getmembers");
       }
     } catch (error) {
-      console.log("failed to delete member", error.message);
+      console.log("Failed to delete member", error.message);
     }
   };
-  if (loading) return <p>Loading...</p>;
+
+  if (loading)
+    return (
+      <div className="loader">
+        <BeatLoader />
+      </div>
+    );
 
   return (
-    <div className="form-wrapper">
-      <div className="edit-form-container">
-        <h2>Edit Member</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="member-form">
-          <h2>APPLICATION FORM</h2>
+    <div className="edit-form-container">
+      <h2>Edit Member</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="member-form">
+        <h2>APPLICATION FORM</h2>
 
-          <label className="form-label" htmlFor="name">
-            name:
-          </label>
+        <label className="form-label">Name:</label>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          className="form-input"
+          {...register("Name", { required: "Name is required" })}
+        />
+
+        <label className="form-label">Age:</label>
+        <input
+          type="number"
+          placeholder="Enter your age"
+          className="form-input"
+          {...register("Age", {
+            required: "Age is required",
+            minLength: 2,
+            maxLength: 2,
+          })}
+        />
+
+        <label className="form-label">Gender:</label>
+        <div className="gender-group">
           <input
-            id="name"
-            type="text"
-            placeholder="enter your name"
-            className="form-input"
-            {...register("Name", {
-              required: "name is required",
-            })}
+            type="radio"
+            value="female"
+            {...register("Gender", { required: "Gender is required" })}
           />
-
-          <label className="form-label" htmlFor="age">
-            age:
-          </label>
+          <label>Female</label>
           <input
-            id="age"
-            type="number"
-            placeholder="enter your age"
-            className="form-input"
-            {...register("Age", {
-              required: "age is required",
-              minLength: 2,
-              maxLength: 2,
-            })}
+            type="radio"
+            value="male"
+            {...register("Gender", { required: "Gender is required" })}
           />
+          <label>Male</label>
+          <input
+            type="radio"
+            value="others"
+            {...register("Gender", { required: "Gender is required" })}
+          />
+          <label>Others</label>
+        </div>
 
-          <div className="gender-group">
-            <span className="form-label">gender:</span>
-            <input
-              type="radio"
-              value="female"
-              id="female"
-              {...register("Gender", { required: "gender is required" })}
-            />
-            <label htmlFor="female">female</label>
+        <label className="form-label">Course:</label>
+        <select
+          className="form-input"
+          {...register("Course", { required: "Course is required" })}
+        >
+          <option value="">Choose your course</option>
+          <option value="bca">BCA</option>
+          <option value="bba">BBA</option>
+          <option value="bcom">BCOM</option>
+        </select>
 
-            <input
-              type="radio"
-              value="male"
-              id="male"
-              {...register("Gender", { required: "gender is required" })}
-            />
-            <label htmlFor="male">male</label>
+        <label className="form-label">Contact:</label>
+        <input
+          type="number"
+          placeholder="Enter your contact number"
+          className="form-input"
+          {...register("Contact", {
+            required: "Contact number is required",
+            minLength: 10,
+            maxLength: 10,
+          })}
+        />
 
-            <input
-              type="radio"
-              value="others"
-              id="others"
-              {...register("Gender", { required: "gender is required" })}
-            />
-            <label htmlFor="others">others</label>
-          </div>
+        <label className="form-label">Address:</label>
+        <textarea
+          className="form-textarea"
+          placeholder="Enter your address"
+          {...register("Address", { required: "Address is required" })}
+        />
 
-          <label className="form-label" htmlFor="course">
-            course:
-          </label>
-          <select
-            id="course"
-            className="form-input"
-            {...register("Course", { required: "course is required" })}
+        {/* Side-by-side buttons */}
+        <div className="button-group">
+          <input type="submit" value="Update Member" className="submit-btn" />
+          <button
+            type="button"
+            onClick={deleteMember}
+            className="delbutton-inside"
           >
-            <option value="">choose your course</option>
-            <option value="bca">BCA </option>
-            <option value="bba"> BBA</option>
-            <option value="bcom"> BCOM</option>
-          </select>
-
-          <label className="form-label" htmlFor="contact">
-            contact:
-          </label>
-          <input
-            id="contact"
-            type="number"
-            placeholder="enter your contact number"
-            className="form-input"
-            {...register("Contact", {
-              required: "contact number is required",
-              minLength: 10,
-              maxLength: 10,
-            })}
-          />
-
-          <label className="form-label" htmlFor="address">
-            address:
-          </label>
-          <textarea
-            id="address"
-            className="form-textarea"
-            {...register("Address", { required: "address is required" })}
-          />
-
-          <input type="submit" value="update member" className="submit-btn" />
-        </form>
-        <button onClick={deleteMember} className="delbutton">
-          delete member
-        </button>
-      </div>
+            Delete Member
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

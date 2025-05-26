@@ -1,4 +1,11 @@
-/* Center the card container */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* or your container height */
+  width: 100%;
+}
+
 .card-container {
   display: flex;
   justify-content: center;
